@@ -1,6 +1,13 @@
-const { getAdapterConfig } = require("../../rollup.utils");
+const { index, magicExports } = require("../../rollup.utils");
+
+let sourceDir = __dirname;
+let packageName = "@remix-run/vercel";
 
 /** @returns {import("rollup").RollupOptions[]} */
-module.exports = function remixServerAdapters() {
-  return [...getAdapterConfig("vercel")];
+module.exports = function rollup() {
+  return [
+    index({ sourceDir, packageName, format: "cjs" }),
+    magicExports({ sourceDir, packageName, format: "cjs" }),
+    magicExports({ sourceDir, packageName, format: "esm" }),
+  ];
 };
