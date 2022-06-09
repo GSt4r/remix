@@ -1,6 +1,6 @@
-# Upload images to cloudinary
+# Upload images to S3
 
-This is a simple example of using the remix builtin [uploadHandler](https://remix.run/docs/en/v1/api/remix#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to S3 with a custom uploader and display it. You can test it locally by running the dev server and opening the path `/s3-upload` in your browser.
+This is a simple example of using the remix built-in [uploadHandler](https://remix.run/docs/en/v1/api/remix#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to S3 with a custom uploader and display it. You can test it locally by running the dev server and opening the path `/s3-upload` in your browser.
 
 The relevent files are:
 
@@ -9,7 +9,7 @@ The relevent files are:
 │   ├── routes
 │   │   ├── s3-upload.tsx // upload to S3
 │   └── utils
-│       └── s3.server.ts  // init cloudinary nodejs client on server side
+│       └── s3.server.ts  // init S3 client on server side
 |── .env // holds cloudinary credentails
 ```
 
@@ -22,9 +22,11 @@ The relevent files are:
 
 Note: in order for the image to be displayed after being uploaded to your S3 bucket in this example, the bucket needs to have public access enabled, which is potentially dangerous. 
 
+> :warning: Lambda imposes a [limit of 6MB](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) on the invocation payload size. If you use this example with Remix running on Lambda, you can only update files with a size smaller than 6MB.
+
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/file-and-cloudinary-upload)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/file-and-s3-upload)
 
 ## Related Links
 
