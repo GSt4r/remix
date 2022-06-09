@@ -10,7 +10,7 @@ The relevent files are:
 │   │   ├── s3-upload.tsx // upload to S3
 │   └── utils
 │       └── s3.server.ts  // init S3 client on server side
-|── .env // holds cloudinary credentails
+|── .env // holds AWS S3 credentails
 ```
 
 ## Steps to set up an S3 bucket
